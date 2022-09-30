@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtTimeTick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -28,14 +28,14 @@
         app:layout_constraintTop_toBottomOf="@+id/txtModoAvion" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtWifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="@+id/txtTimeTick"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/txtTimeTick"
+        app:layout_constraintTop_toBottomOf="@+id/txtTimeTick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
