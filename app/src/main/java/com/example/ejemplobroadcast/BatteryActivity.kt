@@ -21,6 +21,7 @@ class BatteryActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         registerReceiver(myBroadcast, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        registerReceiver(myBroadcast, IntentFilter(Intent.ACTION_BATTERY_LOW))
         val intent = Intent(this, MyBroadcast::class.java)
         sendBroadcast(intent)
     }

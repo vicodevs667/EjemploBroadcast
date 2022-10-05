@@ -17,6 +17,14 @@ class MyBroadcast(
         //los mensajes de diferentes servicios que configuremos
         when(intent?.action) {
             Intent.ACTION_BATTERY_CHANGED -> showBatteryStatus(intent)
+            Intent.ACTION_BATTERY_LOW -> showBatteryLow(intent)
+        }
+    }
+
+    private fun showBatteryLow(intent: Intent?) {
+        val batteryStatus = intent?.getBooleanExtra(BatteryManager.EXTRA_BATTERY_LOW, false)
+        batteryStatus?.let {
+            bg.txtMensajeBateria.text = "Bateria baja"
         }
     }
 
