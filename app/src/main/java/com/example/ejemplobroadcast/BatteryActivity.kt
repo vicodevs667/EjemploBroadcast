@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import com.example.ejemplobroadcast.databinding.ActivityBatteryBinding
 import com.example.ejemplobroadcast.databinding.ActivityMainBinding
 
@@ -16,6 +17,17 @@ class BatteryActivity : AppCompatActivity() {
         binding = ActivityBatteryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         myBroadcast = MyBroadcast(binding)
+        binding.fabPermisos.setOnClickListener {
+            enablePermissions()
+        }
+    }
+
+    private fun enablePermissions() {
+        //Es abrir la pantalla de tu celular donde esta ubicado
+        //la configuracion de permisos de escritura a los servicios
+        //del celular.
+        val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+        startActivity(intent)
     }
 
     override fun onStart() {
