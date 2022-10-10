@@ -6,8 +6,10 @@ import android.content.Intent
 import android.os.BatteryManager
 import android.os.Build
 import android.provider.Settings
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.ejemplobroadcast.databinding.ActivityBateriaBinding
+import kotlin.math.round
 
 //Para que esta clase se comporte como
 //un Broadcast Receiver debe extender
@@ -47,9 +49,32 @@ class MyBroadcast(
         //a libre gusto si no tienes los permisos habilitados
         val brightnessPermission = hasWriteSettingsPermission(context)
         if (brightnessPermission) {
-            TODO("Implementar cambio de brillo")
+            //Si hay permisos cambiamos el brillo
+            //1: el brillo se maneja en rangos numéricos de 0 a 255
+            // siendo 255 el brillo máximo que se le puede dar a la pantalla
+            //2: por defecto el brillo se maneja o ajusta automáticamente
+            //quiere decir que los niveles son manejados por el sistema...
+
+            //COnfigurando el brillo para que sea en modo manual
+            Settings.System.putInt(
+                context?.contentResolver,
+                Settings.System.SCREEN_BRIGHTNESS_MODE,
+                Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+            )
+            //Configurando el brillo para darle el nivel que ustedes desean
+            // entre 0 y 255
+            Settings.System.putInt(
+                context?.contentResolver,
+                Settings.System.SCREEN_BRIGHTNESS,
+                screenBrightness
+            )
+            val brightnessPercentage = screenBrightness.toDouble() / 255
+            Toast.makeText(context, "${round(brightnessPercentage)}%",
+            Toast.LENGTH_SHORT).show()
+
         } else {
-            TODO("Implementar alterta cuando no tienes permiso")
+            Toast.makeText(context, "No hay permisos, no se puede habilitar brillo",
+            Toast.LENGTH_SHORT).show()
         }
     }
 
