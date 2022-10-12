@@ -16,17 +16,22 @@ class MyBroadcast(
     override fun onReceive(context: Context?, intent: Intent?) {
         when(intent?.action) {
             Intent.ACTION_BATTERY_CHANGED -> showBatteryLevel(intent)
-            Intent.ACTION_BATTERY_LOW -> evaluateLowBattery(intent)
+            Intent.ACTION_BATTERY_LOW -> evaluateLowBattery(context, intent)
         }
     }
 
-    private fun evaluateLowBattery(intent: Intent?) {
+    private fun evaluateLowBattery(context: Context?, intent: Intent?) {
         //El intent que resuelve el tema de la bateria baja
         //maneja un dato en su registro temporal de tipo booleano
         val lowBattery = intent?.getBooleanExtra(BatteryManager.EXTRA_BATTERY_LOW, false)
         lowBattery?.let {
             bindingObject.txtMensajeBateria.text = "Alerta Bateria Baja"
+            configureScreenBrightness(context)
         }
+    }
+
+    private fun configureScreenBrightness(context: Context?) {
+
     }
 
     private fun showBatteryLevel(intent: Intent?) {
